@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/static/img/beer.png">
+    <title>Выбор бара</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+    <h1><s>Выбор бара</s>Рандомизатор</h1>
+
+    <!-- Ввод и добавление словосочетаний -->
+    <div>
+        <input type="text" id="entry-input" placeholder="Название заведения">
+        <button onclick="addEntry()">Добавить</button>
+    </div>
+
+    <!-- Список добавленных слов -->
+    <div id="entries-list"></div>
+
+    <!-- Контейнер для прокрутки -->
+    <div id="entries-scroll-container">
+        <div id="arrow">↓</div> <!-- Стрелка -->
+        <div id="entries-scroll">
+            <!-- Здесь будет прокручиваться текст -->
+        </div>
+    </div>
+
+    <!-- Кнопка для запуска вращения -->
+    <button onclick="spinWheel()">Крутить</button>
+
+    <!-- Результат -->
+    <h2 id="result"></h2>
+
+    <script src="/static/js/app.js"></script>
+
+</body>
+</html>

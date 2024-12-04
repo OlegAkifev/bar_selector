@@ -1,0 +1,242 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для списка записей */
+#entries-list {
+    margin: 20px auto;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.entry-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+}
+
+.entry-item .delete-btn {
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+/* Контейнер для прокрутки */
+#entries-scroll-container {
+    position: relative;
+    width: 80%; /* Ширина контейнера */
+    height: 140px;
+    margin: 40px auto 20px;
+    overflow: hidden; /* Скрываем элементы за границами */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    display: flex; /* Flex для центрирования содержимого */
+    justify-content: center; /* Центрируем содержимое по горизонтали */
+    align-items: center; /* Центрируем содержимое по вертикали */
+}
+
+#entries-scroll {
+    display: flex;
+    align-items: center; /* Центрирование по вертикали */
+    justify-content: center; /* Центрирование по горизонтали */
+    transition: transform 0.3s ease;
+    position: relative;
+    min-width: 100%; /* Гарантируем, что элементы занимают всю ширину */
+}
+
+/* Стили для стрелки */
+#arrow {
+    position: absolute; /* Абсолютное позиционирование внутри flex-контейнера */
+    font-size: 32px; /* Размер стрелки */
+    color: #007bff; /* Цвет стрелки */
+    animation: bounce 1.3s infinite; /* Анимация прыжка */
+    z-index: 10; /* Поверх остальных элементов */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень для улучшения видимости */
+    font-weight: bold; /* Жирный шрифт */
+    margin-bottom: 90px;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+/* Стили для прокручивающихся элементов */
+.scroll-entry {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 18px;
+    white-space: nowrap;
+    /* margin: 0 5px; Промежуток между элементами */
+    margin-right: 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    flex-shrink: 0; /* Не сжимать элементы */
+    transition: transform 0.3s, background-color 0.3s; /* Плавные переходы */
+}
+
+/* Стили для салютов */
+#fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999; /* Чтобы элементы были поверх остальных */
+}
+
+/* Стили для каждого фейерверка */
+.firework {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff9800; /* Цвет по умолчанию */
+    border-radius: 50%;
+    animation: launch 1s ease-out forwards; /* Анимация выстрела */
+}
+
+/* Анимация вылета фейерверка */
+@keyframes launch {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) translateY(-150px);
+        opacity: 0.7;
+    }
+}
+
+/* Стили для взрыва фейерверка */
+.firework.explode {
+    animation: explode 3s ease-out forwards; /* Увеличена продолжительность для медленного исчезновения */
+}
+
+/* Анимация взрыва */
+@keyframes explode {
+    0% {
+        transform: scale(2) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(4) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Стили для искр, которые разлетаются */
+.firework.explode::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 2px;
+    background-color: #ff9800;
+    border-radius: 50%;
+    animation: spark 3s ease-out infinite; /* Искры с плавным исчезновением */
+}
+
+@keyframes spark {
+    0% {
+        transform: translate(-50%, -50%) scale(1.3) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: translate(-50%, -50%) scale(1.8) rotate(45deg);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(2.3) rotate(90deg);
+        opacity: 0.6;
+    }
+    75% {
+        transform: translate(-50%, -50%) scale(2.8) rotate(180deg);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3.3) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.scroll-entry.highlighted {
+    background-color: #ffd700; /* Цвет выделенного элемента */
+    color: #000; /* Цвет текста */
+    font-weight: bold;
+    transform: scale(1.2); /* Увеличение выделенного элемента */
+}
+
+/* Стили для скроллбара */
+#entries-list::-webkit-scrollbar {
+    width: 12px; /* Ширина скроллбара */
+}
+
+#entries-list::-webkit-scrollbar-track {
+    background-color: #f0f2f5; /* Цвет фона трека */
+    border-radius: 10px;
+}
+
+#entries-list::-webkit-scrollbar-thumb {
+    background-color: #007bff; /* Цвет бегунка */
+    border-radius: 10px;
+    border: 3px solid #f0f2f5; /* Отступ вокруг бегунка */
+}
+
+#entries-list::-webkit-scrollbar-thumb:hover {
+    background-color: #0056b3; /* Цвет бегунка при наведении */
+}
+
+#entries-list::-webkit-scrollbar-button {
+    display: none; /* Скрыть стрелки на скроллбаре */
+}
